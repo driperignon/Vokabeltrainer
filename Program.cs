@@ -23,7 +23,7 @@ namespace Vokabeltrainer
             {
                 case "1":
                     Console.Clear();
-                    Console.WriteLine("1. Deutsch nach Englisch\n2. Englisch nach Deutsch\n3. Gemischt\n4. Beenden");
+                    /*Console.WriteLine("1. Deutsch nach Englisch\n2. Englisch nach Deutsch\n3. Gemischt\n4. Beenden");
                     switch (Console.ReadLine())
                     {
                         case "1":
@@ -42,7 +42,8 @@ namespace Vokabeltrainer
                         case "4":
                             Application.Exit();
                             break;
-                    }
+                    }*/
+                    Application.Run(new Lernen(0));
                     break;
 
                 case "2":
