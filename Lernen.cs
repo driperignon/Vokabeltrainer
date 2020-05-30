@@ -3,7 +3,7 @@
  */
 
 using System;
-using System.Windows.Forms;
+using System.Threading;
 using System.IO;
 using System.Collections.Generic;
 
@@ -16,17 +16,18 @@ namespace Vokabeltrainer
     {
         private string sFilePath = string.Empty;
         private string sFileContent = string.Empty;
-        public int wordsCount = 0;
-        private int iMode = 0;
+
+        private int correctWords, totalWords;
+
+        //TODO: find a better solution?
+        //Saves every vocab
+        private List<KeyValuePair<string, string>> vocabList = new List<KeyValuePair<string, string>>();
 
         //Used for chaning the theme after the initial init.
         private MaterialSkinManager materialSkinManager = null;
 
-        //string[,] words = new string[wordsCount, 5];
-
         public Lernen(int mode)
         {
-            iMode = mode;
             InitializeComponent();
 
             //New instance of the MaterialSkinManager
@@ -34,7 +35,7 @@ namespace Vokabeltrainer
             //Allows the material skin addon to manage the current font
             materialSkinManager.AddFormToManage(this);
             //Sets the main theme of the form
-            materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
+            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
 
             //Sets the color scheme used by buttons, textboxes, etc...
             materialSkinManager.ColorScheme = new ColorScheme(Primary.Blue400, Primary.Blue500, Primary.Blue500, Accent.LightBlue100, TextShade.WHITE);
@@ -43,11 +44,13 @@ namespace Vokabeltrainer
             this.MaximizeBox = false;
         }
 
-        //getWordsCount();
-
         private void btn_solution_Click(object sender, EventArgs e)
         {
         }
+
+        /**
+         * Wird aufgerufen wenn die Form lädt
+         */
 
         private void Lernen_Load(object sender, EventArgs e)
         {
@@ -59,50 +62,163 @@ namespace Vokabeltrainer
                 }
             }
 
-            LoadWords();
+            //b1g performance
+            Thread loadingThread = new Thread(this.LoadWords);
+            loadingThread.Start();
         }
 
-        private void getWordsCount()
-        {
-            wordsCount = 0;
-            using (StreamReader reader = new StreamReader(sFilePath))
-            {
-                while (!reader.EndOfStream)
-                {
-                    wordsCount++;
-
-                    //currentLine = reader.ReadLine().Split(':');
-                    //dgv_words.Rows.Add(currentLine[0], currentLine[1]);
-                }
-            }
-        }
+        /**
+         * Packt die vokabeln in eine Liste und inkrementiert die Variable 'totalWords'.
+         */
 
         private void LoadWords()
         {
-            wordsCount = 0;
+            //Resetet die Variable (Nützlich beim reloaden)
+            this.totalWords = 0;
+
+            //Schaut ob die Config existiert & ob ein Dateipfad angegeben wurde
             if (sFilePath.Length != 0 && File.Exists(sFilePath))
             {
-                //dgv_words.Rows.Clear();
                 using (StreamReader reader = new StreamReader(sFilePath))
                 {
+                    //TODO: add reloading functionallity
                     while (!reader.EndOfStream)
                     {
-                        wordsCount++;
-                        //currentLine = reader.ReadLine().Split(':');
-                        //dgv_words.Rows.Add(currentLine[0], currentLine[1]);
+                        //Inkrementiert die Variable 'totalWords' und gibt dann aus dass der Eintrag geladen wird
+                        this.totalWords++;
+                        Console.WriteLine($"{this.totalWords}. Wort wird geladen...");
+
+                        //Teilt den Stream mit dem Zeichen ':' auf
+                        //(streamOutput[0]=Deutsch, streamOutput[1]=Englisch
+                        var streamOutput = reader.ReadLine().Split(':');
+
+                        //Erstellt ein neues KeyValuePair Objekt welche die Vokabel beinhaltet
+                        var keyValuePair = new KeyValuePair<string, string>(streamOutput[0], streamOutput[1]);
+
+                        //Adds the KeyValuePair to our list.
+                        this.vocabList.Add(keyValuePair);
                     }
                 }
             }
+            else
+            {
+                Console.WriteLine("Ohoh... Es scheint so als würde es noch keine Vokabel geben...");
+            }
         }
 
-        private void Btn_next_Click_1(object sender, EventArgs e)
+        private void mbDarkTheme_CheckedChanged(object sender, EventArgs e)
         {
-            this.materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-            if (Txt_solution.Text.Length <= 0) return;
+            if (mbDarkTheme.Checked)
+                materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
+            else
+                materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
         }
 
-        private void Btn_solution_Click_1(object sender, EventArgs e)
+        /**
+         * Checks if the translation is correct
+         * args:
+         *  translation: the translated word
+         *  vocab: the vocab generated by the application
+         *
+         * returns:
+         *  true: if the translation is correct
+         */
+
+        private Boolean isTranslationCorrect(String translation, String vocab)
         {
+            var keyPair = new KeyValuePair<string, string>(translation, vocab);
+            return this.vocabList.Contains(keyPair);
+        }
+
+        /**
+         * Reloads the application
+         */
+
+        private void btnReload_Click(object sender, EventArgs e)
+        {
+            //Clears the console output
+            Console.Clear();
+            //Clears the list
+            this.vocabList.Clear();
+            //Rechecks the config, adds every word to the vocabList & increments the word count
+            this.LoadWords();
+        }
+
+        //Speichert ein zuvor generiertes KeyValuePair zwischen um die Lösung später zu überprüfen
+        private KeyValuePair<string, string> generatedKeyValuePair;
+
+        /**
+          * Updated den info text. (Text wird einfach neu gesetzt lul)
+          */
+
+        private void updateText()
+        {
+            this.lblResult.Text = $"Du hast {this.correctWords} von {this.totalWords} richtig übersetzt!";
+        }
+
+        private void generateNewVocab()
+        {
+            //Textboxen texte werden zurückgesetzt
+            this.tfVocab.Text = "";
+            this.tfSolution.Text = "";
+
+            if (this.vocabList.Count == 0) return;
+
+            //Erstellt ein neues Objekt von Random
+            var random = new Random();
+            //Welcher huso hat sich 'Count' ausgedacht??????????????????????????
+            this.generatedKeyValuePair = this.vocabList[random.Next(0, this.vocabList.Count)];
+            this.tfVocab.Text = this.generatedKeyValuePair.Value;
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            this.generateNewVocab();
+            this.updateText();
+        }
+
+        private void btnCheckSolution_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (this.isTranslationCorrect(this.tfSolution.Text, this.generatedKeyValuePair.Value))
+                {
+                    //correctWords wird inkrementiert und der info Text wird geupdated
+                    this.correctWords++;
+                    this.updateText();
+
+                    //Wenn vocabList die Vokabel enthält (Was sie eigentlich ab dem Punkt immer tun sollte) wird diese rausgelöscht
+                    if (this.vocabList.Contains(this.generatedKeyValuePair))
+                        this.vocabList.Remove(this.generatedKeyValuePair);
+
+                    //Neue Vokabel wird generiert
+                    this.generateNewVocab();
+                }
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine("Ohoh... Das hätte nicht passieren sollen...");
+                Console.WriteLine("Ausnamentyp: " + exception.GetType().ToString());
+            }
+        }
+
+        /**
+         * All of the functions below will change the theme of the MaterialSkinManager Instance
+         */
+
+        private void rbRed_CheckedChanged(object sender, EventArgs e)
+        {
+            materialSkinManager.ColorScheme = new ColorScheme(Primary.Red400, Primary.Red500, Primary.Red500, Accent.Red100, TextShade.WHITE);
+        }
+
+        private void rbGreen_CheckedChanged(object sender, EventArgs e)
+        {
+            materialSkinManager.ColorScheme = new ColorScheme(Primary.Green400, Primary.Green500, Primary.Green500, Accent.LightGreen100, TextShade.WHITE);
+        }
+
+        private void rbBlue_CheckedChanged(object sender, EventArgs e)
+        {
+            materialSkinManager.ColorScheme = new ColorScheme(Primary.Blue400, Primary.Blue500, Primary.Blue500, Accent.LightBlue100, TextShade.WHITE);
         }
     }
 }
