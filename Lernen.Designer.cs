@@ -28,9 +28,14 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Lernen));
             this.Tc_main = new MaterialSkin.Controls.MaterialTabControl();
-            this.tpGerman = new System.Windows.Forms.TabPage();
+            this.tpPlay = new System.Windows.Forms.TabPage();
+            this.txtLastTry = new MaterialSkin.Controls.MaterialLabel();
+            this.btnEnd = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.rbEngGer = new MaterialSkin.Controls.MaterialRadioButton();
+            this.rbGerEng = new MaterialSkin.Controls.MaterialRadioButton();
             this.btnCheckSolution = new MaterialSkin.Controls.MaterialRaisedButton();
             this.btnNext = new MaterialSkin.Controls.MaterialRaisedButton();
             this.lblResult = new MaterialSkin.Controls.MaterialLabel();
@@ -38,52 +43,127 @@
             this.tfSolution = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.tfVocab = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
-            this.tpEnglish = new System.Windows.Forms.TabPage();
-            this.tbEnglishGerman = new System.Windows.Forms.TabPage();
             this.tbSettings = new System.Windows.Forms.TabPage();
+            this.tfName = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.btnClearConsole = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
+            this.tfLocation = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.cbDeleteVocab = new MaterialSkin.Controls.MaterialCheckBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.rbBlue = new MaterialSkin.Controls.MaterialRadioButton();
+            this.rbRed = new MaterialSkin.Controls.MaterialRadioButton();
+            this.rbGreen = new MaterialSkin.Controls.MaterialRadioButton();
             this.btnAddVocabs = new MaterialSkin.Controls.MaterialRaisedButton();
             this.btnReload = new MaterialSkin.Controls.MaterialRaisedButton();
             this.splitter2 = new System.Windows.Forms.Splitter();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.mbDarkTheme = new MaterialSkin.Controls.MaterialCheckBox();
-            this.rbBlue = new MaterialSkin.Controls.MaterialRadioButton();
-            this.rbRed = new MaterialSkin.Controls.MaterialRadioButton();
             this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
-            this.rbGreen = new MaterialSkin.Controls.MaterialRadioButton();
             this.Ts_main = new MaterialSkin.Controls.MaterialTabSelector();
+            this.cheatNotification = new System.Windows.Forms.NotifyIcon(this.components);
+            this.txtCurrentTry = new MaterialSkin.Controls.MaterialLabel();
             this.Tc_main.SuspendLayout();
-            this.tpGerman.SuspendLayout();
+            this.tpPlay.SuspendLayout();
             this.tbSettings.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // Tc_main
             // 
-            this.Tc_main.Controls.Add(this.tpGerman);
-            this.Tc_main.Controls.Add(this.tpEnglish);
-            this.Tc_main.Controls.Add(this.tbEnglishGerman);
+            this.Tc_main.Controls.Add(this.tpPlay);
             this.Tc_main.Controls.Add(this.tbSettings);
             this.Tc_main.Depth = 0;
             this.Tc_main.Location = new System.Drawing.Point(0, 105);
             this.Tc_main.MouseState = MaterialSkin.MouseState.HOVER;
             this.Tc_main.Name = "Tc_main";
             this.Tc_main.SelectedIndex = 0;
-            this.Tc_main.Size = new System.Drawing.Size(595, 174);
+            this.Tc_main.Size = new System.Drawing.Size(518, 251);
             this.Tc_main.TabIndex = 11;
             // 
-            // tpGerman
+            // tpPlay
             // 
-            this.tpGerman.Controls.Add(this.btnCheckSolution);
-            this.tpGerman.Controls.Add(this.btnNext);
-            this.tpGerman.Controls.Add(this.lblResult);
-            this.tpGerman.Controls.Add(this.materialLabel2);
-            this.tpGerman.Controls.Add(this.tfSolution);
-            this.tpGerman.Controls.Add(this.tfVocab);
-            this.tpGerman.Controls.Add(this.materialLabel1);
-            this.tpGerman.Location = new System.Drawing.Point(4, 22);
-            this.tpGerman.Name = "tpGerman";
-            this.tpGerman.Size = new System.Drawing.Size(587, 148);
-            this.tpGerman.TabIndex = 3;
-            this.tpGerman.Text = "Deutsch";
+            this.tpPlay.Controls.Add(this.txtCurrentTry);
+            this.tpPlay.Controls.Add(this.txtLastTry);
+            this.tpPlay.Controls.Add(this.btnEnd);
+            this.tpPlay.Controls.Add(this.rbEngGer);
+            this.tpPlay.Controls.Add(this.rbGerEng);
+            this.tpPlay.Controls.Add(this.btnCheckSolution);
+            this.tpPlay.Controls.Add(this.btnNext);
+            this.tpPlay.Controls.Add(this.lblResult);
+            this.tpPlay.Controls.Add(this.materialLabel2);
+            this.tpPlay.Controls.Add(this.tfSolution);
+            this.tpPlay.Controls.Add(this.tfVocab);
+            this.tpPlay.Controls.Add(this.materialLabel1);
+            this.tpPlay.Location = new System.Drawing.Point(4, 22);
+            this.tpPlay.Name = "tpPlay";
+            this.tpPlay.Size = new System.Drawing.Size(510, 225);
+            this.tpPlay.TabIndex = 3;
+            this.tpPlay.Text = "Vokabeltrainer";
+            // 
+            // txtLastTry
+            // 
+            this.txtLastTry.AutoSize = true;
+            this.txtLastTry.Depth = 0;
+            this.txtLastTry.Font = new System.Drawing.Font("Roboto", 11F);
+            this.txtLastTry.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtLastTry.Location = new System.Drawing.Point(8, 192);
+            this.txtLastTry.MouseState = MaterialSkin.MouseState.HOVER;
+            this.txtLastTry.Name = "txtLastTry";
+            this.txtLastTry.Size = new System.Drawing.Size(204, 19);
+            this.txtLastTry.TabIndex = 23;
+            this.txtLastTry.Text = "Fehler in % (Letzter Versuch):";
+            // 
+            // btnEnd
+            // 
+            this.btnEnd.AutoSize = true;
+            this.btnEnd.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnEnd.Depth = 0;
+            this.btnEnd.Icon = null;
+            this.btnEnd.Location = new System.Drawing.Point(335, 175);
+            this.btnEnd.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnEnd.Name = "btnEnd";
+            this.btnEnd.Primary = true;
+            this.btnEnd.Size = new System.Drawing.Size(162, 36);
+            this.btnEnd.TabIndex = 22;
+            this.btnEnd.Text = "Ergebnis Speichern";
+            this.btnEnd.UseVisualStyleBackColor = true;
+            this.btnEnd.Click += new System.EventHandler(this.btnEnd_Click);
+            // 
+            // rbEngGer
+            // 
+            this.rbEngGer.AutoSize = true;
+            this.rbEngGer.Checked = true;
+            this.rbEngGer.Depth = 0;
+            this.rbEngGer.Font = new System.Drawing.Font("Roboto", 10F);
+            this.rbEngGer.Location = new System.Drawing.Point(8, 148);
+            this.rbEngGer.Margin = new System.Windows.Forms.Padding(0);
+            this.rbEngGer.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.rbEngGer.MouseState = MaterialSkin.MouseState.HOVER;
+            this.rbEngGer.Name = "rbEngGer";
+            this.rbEngGer.Ripple = true;
+            this.rbEngGer.Size = new System.Drawing.Size(150, 30);
+            this.rbEngGer.TabIndex = 20;
+            this.rbEngGer.TabStop = true;
+            this.rbEngGer.Text = "Englisch -> Deutsch";
+            this.rbEngGer.UseVisualStyleBackColor = true;
+            this.rbEngGer.CheckedChanged += new System.EventHandler(this.rbEngGer_CheckedChanged);
+            // 
+            // rbGerEng
+            // 
+            this.rbGerEng.AutoSize = true;
+            this.rbGerEng.Depth = 0;
+            this.rbGerEng.Font = new System.Drawing.Font("Roboto", 10F);
+            this.rbGerEng.Location = new System.Drawing.Point(8, 118);
+            this.rbGerEng.Margin = new System.Windows.Forms.Padding(0);
+            this.rbGerEng.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.rbGerEng.MouseState = MaterialSkin.MouseState.HOVER;
+            this.rbGerEng.Name = "rbGerEng";
+            this.rbGerEng.Ripple = true;
+            this.rbGerEng.Size = new System.Drawing.Size(150, 30);
+            this.rbGerEng.TabIndex = 19;
+            this.rbGerEng.Text = "Deutsch -> Englisch";
+            this.rbGerEng.UseVisualStyleBackColor = true;
+            this.rbGerEng.CheckedChanged += new System.EventHandler(this.rbGerEng_CheckedChanged);
             // 
             // btnCheckSolution
             // 
@@ -91,7 +171,7 @@
             this.btnCheckSolution.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnCheckSolution.Depth = 0;
             this.btnCheckSolution.Icon = null;
-            this.btnCheckSolution.Location = new System.Drawing.Point(412, 61);
+            this.btnCheckSolution.Location = new System.Drawing.Point(335, 60);
             this.btnCheckSolution.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnCheckSolution.Name = "btnCheckSolution";
             this.btnCheckSolution.Primary = true;
@@ -107,7 +187,7 @@
             this.btnNext.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnNext.Depth = 0;
             this.btnNext.Icon = null;
-            this.btnNext.Location = new System.Drawing.Point(429, 13);
+            this.btnNext.Location = new System.Drawing.Point(335, 12);
             this.btnNext.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnNext.Name = "btnNext";
             this.btnNext.Primary = true;
@@ -123,11 +203,12 @@
             this.lblResult.Depth = 0;
             this.lblResult.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblResult.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblResult.Location = new System.Drawing.Point(8, 112);
+            this.lblResult.Location = new System.Drawing.Point(8, 99);
             this.lblResult.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblResult.Name = "lblResult";
-            this.lblResult.Size = new System.Drawing.Size(0, 19);
+            this.lblResult.Size = new System.Drawing.Size(376, 19);
             this.lblResult.TabIndex = 16;
+            this.lblResult.Text = "Drücke auf \'Starten\' um den Vokabeltrainer zu starten...";
             // 
             // materialLabel2
             // 
@@ -135,7 +216,7 @@
             this.materialLabel2.Depth = 0;
             this.materialLabel2.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel2.Location = new System.Drawing.Point(9, 52);
+            this.materialLabel2.Location = new System.Drawing.Point(4, 51);
             this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel2.Name = "materialLabel2";
             this.materialLabel2.Size = new System.Drawing.Size(100, 19);
@@ -146,7 +227,7 @@
             // 
             this.tfSolution.Depth = 0;
             this.tfSolution.Hint = "";
-            this.tfSolution.Location = new System.Drawing.Point(13, 74);
+            this.tfSolution.Location = new System.Drawing.Point(8, 73);
             this.tfSolution.MaxLength = 32767;
             this.tfSolution.MouseState = MaterialSkin.MouseState.HOVER;
             this.tfSolution.Name = "tfSolution";
@@ -164,7 +245,7 @@
             this.tfVocab.Depth = 0;
             this.tfVocab.Enabled = false;
             this.tfVocab.Hint = "";
-            this.tfVocab.Location = new System.Drawing.Point(13, 26);
+            this.tfVocab.Location = new System.Drawing.Point(8, 25);
             this.tfVocab.MaxLength = 32767;
             this.tfVocab.MouseState = MaterialSkin.MouseState.HOVER;
             this.tfVocab.Name = "tfVocab";
@@ -183,111 +264,127 @@
             this.materialLabel1.Depth = 0;
             this.materialLabel1.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel1.Location = new System.Drawing.Point(9, 4);
+            this.materialLabel1.Location = new System.Drawing.Point(4, 3);
             this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel1.Name = "materialLabel1";
             this.materialLabel1.Size = new System.Drawing.Size(64, 19);
             this.materialLabel1.TabIndex = 0;
             this.materialLabel1.Text = "Vokabel";
             // 
-            // tpEnglish
-            // 
-            this.tpEnglish.Location = new System.Drawing.Point(4, 22);
-            this.tpEnglish.Name = "tpEnglish";
-            this.tpEnglish.Padding = new System.Windows.Forms.Padding(3);
-            this.tpEnglish.Size = new System.Drawing.Size(587, 148);
-            this.tpEnglish.TabIndex = 1;
-            this.tpEnglish.Text = "Englisch";
-            // 
-            // tbEnglishGerman
-            // 
-            this.tbEnglishGerman.Location = new System.Drawing.Point(4, 22);
-            this.tbEnglishGerman.Name = "tbEnglishGerman";
-            this.tbEnglishGerman.Padding = new System.Windows.Forms.Padding(3);
-            this.tbEnglishGerman.Size = new System.Drawing.Size(587, 148);
-            this.tbEnglishGerman.TabIndex = 2;
-            this.tbEnglishGerman.Text = "Gemischt";
-            // 
             // tbSettings
             // 
+            this.tbSettings.Controls.Add(this.tfName);
+            this.tbSettings.Controls.Add(this.btnClearConsole);
+            this.tbSettings.Controls.Add(this.materialLabel4);
+            this.tbSettings.Controls.Add(this.tfLocation);
+            this.tbSettings.Controls.Add(this.cbDeleteVocab);
+            this.tbSettings.Controls.Add(this.panel1);
             this.tbSettings.Controls.Add(this.btnAddVocabs);
             this.tbSettings.Controls.Add(this.btnReload);
             this.tbSettings.Controls.Add(this.splitter2);
             this.tbSettings.Controls.Add(this.splitter1);
             this.tbSettings.Controls.Add(this.mbDarkTheme);
-            this.tbSettings.Controls.Add(this.rbBlue);
-            this.tbSettings.Controls.Add(this.rbRed);
             this.tbSettings.Controls.Add(this.materialLabel3);
-            this.tbSettings.Controls.Add(this.rbGreen);
             this.tbSettings.Location = new System.Drawing.Point(4, 22);
             this.tbSettings.Name = "tbSettings";
-            this.tbSettings.Size = new System.Drawing.Size(587, 148);
+            this.tbSettings.Size = new System.Drawing.Size(510, 225);
             this.tbSettings.TabIndex = 4;
             this.tbSettings.Text = "Einstellungen";
             // 
-            // btnAddVocabs
+            // tfName
             // 
-            this.btnAddVocabs.AutoSize = true;
-            this.btnAddVocabs.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnAddVocabs.Depth = 0;
-            this.btnAddVocabs.Icon = null;
-            this.btnAddVocabs.Location = new System.Drawing.Point(385, 85);
-            this.btnAddVocabs.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnAddVocabs.Name = "btnAddVocabs";
-            this.btnAddVocabs.Primary = true;
-            this.btnAddVocabs.Size = new System.Drawing.Size(178, 36);
-            this.btnAddVocabs.TabIndex = 9;
-            this.btnAddVocabs.Text = "Vokabeln hinzufügen";
-            this.btnAddVocabs.UseVisualStyleBackColor = true;
+            this.tfName.Depth = 0;
+            this.tfName.Hint = "";
+            this.tfName.Location = new System.Drawing.Point(140, 197);
+            this.tfName.MaxLength = 32767;
+            this.tfName.MouseState = MaterialSkin.MouseState.HOVER;
+            this.tfName.Name = "tfName";
+            this.tfName.PasswordChar = '\0';
+            this.tfName.SelectedText = "";
+            this.tfName.SelectionLength = 0;
+            this.tfName.SelectionStart = 0;
+            this.tfName.Size = new System.Drawing.Size(131, 23);
+            this.tfName.TabIndex = 16;
+            this.tfName.TabStop = false;
+            this.tfName.Text = "record.txt";
+            this.tfName.UseSystemPasswordChar = false;
             // 
-            // btnReload
+            // btnClearConsole
             // 
-            this.btnReload.AutoSize = true;
-            this.btnReload.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnReload.Depth = 0;
-            this.btnReload.Icon = null;
-            this.btnReload.Location = new System.Drawing.Point(385, 28);
-            this.btnReload.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnReload.Name = "btnReload";
-            this.btnReload.Primary = true;
-            this.btnReload.Size = new System.Drawing.Size(175, 36);
-            this.btnReload.TabIndex = 8;
-            this.btnReload.Text = "Programm neu laden ";
-            this.btnReload.UseVisualStyleBackColor = true;
-            this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
+            this.btnClearConsole.AutoSize = true;
+            this.btnClearConsole.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnClearConsole.Depth = 0;
+            this.btnClearConsole.Icon = null;
+            this.btnClearConsole.Location = new System.Drawing.Point(330, 131);
+            this.btnClearConsole.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnClearConsole.Name = "btnClearConsole";
+            this.btnClearConsole.Primary = true;
+            this.btnClearConsole.Size = new System.Drawing.Size(134, 36);
+            this.btnClearConsole.TabIndex = 15;
+            this.btnClearConsole.Text = "Konsole leeren";
+            this.btnClearConsole.UseVisualStyleBackColor = true;
+            this.btnClearConsole.Click += new System.EventHandler(this.btnClearConsole_Click);
             // 
-            // splitter2
+            // materialLabel4
             // 
-            this.splitter2.Location = new System.Drawing.Point(3, 0);
-            this.splitter2.Name = "splitter2";
-            this.splitter2.Size = new System.Drawing.Size(3, 148);
-            this.splitter2.TabIndex = 7;
-            this.splitter2.TabStop = false;
+            this.materialLabel4.AutoSize = true;
+            this.materialLabel4.Depth = 0;
+            this.materialLabel4.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel4.Location = new System.Drawing.Point(8, 167);
+            this.materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel4.Name = "materialLabel4";
+            this.materialLabel4.Size = new System.Drawing.Size(144, 19);
+            this.materialLabel4.TabIndex = 13;
+            this.materialLabel4.Text = "Speicherdatei Name";
+            this.materialLabel4.Click += new System.EventHandler(this.materialLabel4_Click);
             // 
-            // splitter1
+            // tfLocation
             // 
-            this.splitter1.Location = new System.Drawing.Point(0, 0);
-            this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(3, 148);
-            this.splitter1.TabIndex = 6;
-            this.splitter1.TabStop = false;
+            this.tfLocation.Depth = 0;
+            this.tfLocation.Hint = "";
+            this.tfLocation.Location = new System.Drawing.Point(12, 197);
+            this.tfLocation.MaxLength = 32767;
+            this.tfLocation.MouseState = MaterialSkin.MouseState.HOVER;
+            this.tfLocation.Name = "tfLocation";
+            this.tfLocation.PasswordChar = '\0';
+            this.tfLocation.SelectedText = "";
+            this.tfLocation.SelectionLength = 0;
+            this.tfLocation.SelectionStart = 0;
+            this.tfLocation.Size = new System.Drawing.Size(122, 23);
+            this.tfLocation.TabIndex = 12;
+            this.tfLocation.TabStop = false;
+            this.tfLocation.Text = "words/records";
+            this.tfLocation.UseSystemPasswordChar = false;
             // 
-            // mbDarkTheme
+            // cbDeleteVocab
             // 
-            this.mbDarkTheme.AutoSize = true;
-            this.mbDarkTheme.Depth = 0;
-            this.mbDarkTheme.Font = new System.Drawing.Font("Roboto", 10F);
-            this.mbDarkTheme.Location = new System.Drawing.Point(6, 1);
-            this.mbDarkTheme.Margin = new System.Windows.Forms.Padding(0);
-            this.mbDarkTheme.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.mbDarkTheme.MouseState = MaterialSkin.MouseState.HOVER;
-            this.mbDarkTheme.Name = "mbDarkTheme";
-            this.mbDarkTheme.Ripple = true;
-            this.mbDarkTheme.Size = new System.Drawing.Size(182, 30);
-            this.mbDarkTheme.TabIndex = 2;
-            this.mbDarkTheme.Text = "Dunkles theme benutzen";
-            this.mbDarkTheme.UseVisualStyleBackColor = true;
-            this.mbDarkTheme.CheckedChanged += new System.EventHandler(this.mbDarkTheme_CheckedChanged);
+            this.cbDeleteVocab.AutoSize = true;
+            this.cbDeleteVocab.Checked = true;
+            this.cbDeleteVocab.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbDeleteVocab.Depth = 0;
+            this.cbDeleteVocab.Font = new System.Drawing.Font("Roboto", 10F);
+            this.cbDeleteVocab.Location = new System.Drawing.Point(9, 137);
+            this.cbDeleteVocab.Margin = new System.Windows.Forms.Padding(0);
+            this.cbDeleteVocab.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.cbDeleteVocab.MouseState = MaterialSkin.MouseState.HOVER;
+            this.cbDeleteVocab.Name = "cbDeleteVocab";
+            this.cbDeleteVocab.Ripple = true;
+            this.cbDeleteVocab.Size = new System.Drawing.Size(230, 30);
+            this.cbDeleteVocab.TabIndex = 11;
+            this.cbDeleteVocab.Text = "Vokabeln automatisch entfernen";
+            this.cbDeleteVocab.UseVisualStyleBackColor = true;
+            this.cbDeleteVocab.CheckedChanged += new System.EventHandler(this.cbDeleteVocab_CheckedChanged);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.rbBlue);
+            this.panel1.Controls.Add(this.rbRed);
+            this.panel1.Controls.Add(this.rbGreen);
+            this.panel1.Location = new System.Drawing.Point(21, 33);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(100, 88);
+            this.panel1.TabIndex = 10;
             // 
             // rbBlue
             // 
@@ -295,7 +392,7 @@
             this.rbBlue.Checked = true;
             this.rbBlue.Depth = 0;
             this.rbBlue.Font = new System.Drawing.Font("Roboto", 10F);
-            this.rbBlue.Location = new System.Drawing.Point(27, 31);
+            this.rbBlue.Location = new System.Drawing.Point(0, 0);
             this.rbBlue.Margin = new System.Windows.Forms.Padding(0);
             this.rbBlue.MouseLocation = new System.Drawing.Point(-1, -1);
             this.rbBlue.MouseState = MaterialSkin.MouseState.HOVER;
@@ -314,7 +411,7 @@
             this.rbRed.AutoSize = true;
             this.rbRed.Depth = 0;
             this.rbRed.Font = new System.Drawing.Font("Roboto", 10F);
-            this.rbRed.Location = new System.Drawing.Point(27, 61);
+            this.rbRed.Location = new System.Drawing.Point(0, 30);
             this.rbRed.Margin = new System.Windows.Forms.Padding(0);
             this.rbRed.MouseLocation = new System.Drawing.Point(-1, -1);
             this.rbRed.MouseState = MaterialSkin.MouseState.HOVER;
@@ -327,25 +424,12 @@
             this.rbRed.UseVisualStyleBackColor = true;
             this.rbRed.CheckedChanged += new System.EventHandler(this.rbRed_CheckedChanged);
             // 
-            // materialLabel3
-            // 
-            this.materialLabel3.AutoSize = true;
-            this.materialLabel3.Depth = 0;
-            this.materialLabel3.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel3.Location = new System.Drawing.Point(42, 124);
-            this.materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel3.Name = "materialLabel3";
-            this.materialLabel3.Size = new System.Drawing.Size(502, 19);
-            this.materialLabel3.TabIndex = 0;
-            this.materialLabel3.Text = "Gemacht von Vahap Caliskan, Finn Martin, Marvin Ulrich und Joshua Ebert";
-            // 
             // rbGreen
             // 
             this.rbGreen.AutoSize = true;
             this.rbGreen.Depth = 0;
             this.rbGreen.Font = new System.Drawing.Font("Roboto", 10F);
-            this.rbGreen.Location = new System.Drawing.Point(27, 91);
+            this.rbGreen.Location = new System.Drawing.Point(0, 60);
             this.rbGreen.Margin = new System.Windows.Forms.Padding(0);
             this.rbGreen.MouseLocation = new System.Drawing.Point(-1, -1);
             this.rbGreen.MouseState = MaterialSkin.MouseState.HOVER;
@@ -358,6 +442,83 @@
             this.rbGreen.UseVisualStyleBackColor = true;
             this.rbGreen.CheckedChanged += new System.EventHandler(this.rbGreen_CheckedChanged);
             // 
+            // btnAddVocabs
+            // 
+            this.btnAddVocabs.AutoSize = true;
+            this.btnAddVocabs.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnAddVocabs.Depth = 0;
+            this.btnAddVocabs.Icon = null;
+            this.btnAddVocabs.Location = new System.Drawing.Point(330, 76);
+            this.btnAddVocabs.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnAddVocabs.Name = "btnAddVocabs";
+            this.btnAddVocabs.Primary = true;
+            this.btnAddVocabs.Size = new System.Drawing.Size(178, 36);
+            this.btnAddVocabs.TabIndex = 9;
+            this.btnAddVocabs.Text = "Vokabeln hinzufügen";
+            this.btnAddVocabs.UseVisualStyleBackColor = true;
+            // 
+            // btnReload
+            // 
+            this.btnReload.AutoSize = true;
+            this.btnReload.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnReload.Depth = 0;
+            this.btnReload.Icon = null;
+            this.btnReload.Location = new System.Drawing.Point(330, 25);
+            this.btnReload.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnReload.Name = "btnReload";
+            this.btnReload.Primary = true;
+            this.btnReload.Size = new System.Drawing.Size(175, 36);
+            this.btnReload.TabIndex = 8;
+            this.btnReload.Text = "Programm neu laden ";
+            this.btnReload.UseVisualStyleBackColor = true;
+            this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
+            // 
+            // splitter2
+            // 
+            this.splitter2.Location = new System.Drawing.Point(3, 0);
+            this.splitter2.Name = "splitter2";
+            this.splitter2.Size = new System.Drawing.Size(3, 225);
+            this.splitter2.TabIndex = 7;
+            this.splitter2.TabStop = false;
+            // 
+            // splitter1
+            // 
+            this.splitter1.Location = new System.Drawing.Point(0, 0);
+            this.splitter1.Name = "splitter1";
+            this.splitter1.Size = new System.Drawing.Size(3, 225);
+            this.splitter1.TabIndex = 6;
+            this.splitter1.TabStop = false;
+            // 
+            // mbDarkTheme
+            // 
+            this.mbDarkTheme.AutoSize = true;
+            this.mbDarkTheme.Depth = 0;
+            this.mbDarkTheme.Font = new System.Drawing.Font("Roboto", 10F);
+            this.mbDarkTheme.Location = new System.Drawing.Point(9, 0);
+            this.mbDarkTheme.Margin = new System.Windows.Forms.Padding(0);
+            this.mbDarkTheme.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.mbDarkTheme.MouseState = MaterialSkin.MouseState.HOVER;
+            this.mbDarkTheme.Name = "mbDarkTheme";
+            this.mbDarkTheme.Ripple = true;
+            this.mbDarkTheme.Size = new System.Drawing.Size(182, 30);
+            this.mbDarkTheme.TabIndex = 2;
+            this.mbDarkTheme.Text = "Dunkles theme benutzen";
+            this.mbDarkTheme.UseVisualStyleBackColor = true;
+            this.mbDarkTheme.CheckedChanged += new System.EventHandler(this.mbDarkTheme_CheckedChanged);
+            // 
+            // materialLabel3
+            // 
+            this.materialLabel3.AutoSize = true;
+            this.materialLabel3.Depth = 0;
+            this.materialLabel3.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel3.Location = new System.Drawing.Point(3, 223);
+            this.materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel3.Name = "materialLabel3";
+            this.materialLabel3.Size = new System.Drawing.Size(502, 19);
+            this.materialLabel3.TabIndex = 0;
+            this.materialLabel3.Text = "Gemacht von Vahap Caliskan, Finn Martin, Marvin Ulrich und Joshua Ebert";
+            // 
             // Ts_main
             // 
             this.Ts_main.BaseTabControl = this.Tc_main;
@@ -365,15 +526,33 @@
             this.Ts_main.Location = new System.Drawing.Point(0, 63);
             this.Ts_main.MouseState = MaterialSkin.MouseState.HOVER;
             this.Ts_main.Name = "Ts_main";
-            this.Ts_main.Size = new System.Drawing.Size(595, 36);
+            this.Ts_main.Size = new System.Drawing.Size(518, 36);
             this.Ts_main.TabIndex = 12;
             this.Ts_main.Text = "Tabs";
+            // 
+            // cheatNotification
+            // 
+            this.cheatNotification.Text = "cheat";
+            this.cheatNotification.Visible = true;
+            // 
+            // txtCurrentTry
+            // 
+            this.txtCurrentTry.AutoSize = true;
+            this.txtCurrentTry.Depth = 0;
+            this.txtCurrentTry.Font = new System.Drawing.Font("Roboto", 11F);
+            this.txtCurrentTry.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtCurrentTry.Location = new System.Drawing.Point(8, 211);
+            this.txtCurrentTry.MouseState = MaterialSkin.MouseState.HOVER;
+            this.txtCurrentTry.Name = "txtCurrentTry";
+            this.txtCurrentTry.Size = new System.Drawing.Size(223, 19);
+            this.txtCurrentTry.TabIndex = 24;
+            this.txtCurrentTry.Text = "Fehler in % (Jetziger Versuch): 0";
             // 
             // Lernen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(591, 277);
+            this.ClientSize = new System.Drawing.Size(517, 355);
             this.Controls.Add(this.Ts_main);
             this.Controls.Add(this.Tc_main);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -382,20 +561,20 @@
             this.Text = "Vokabeltrainer";
             this.Load += new System.EventHandler(this.Lernen_Load);
             this.Tc_main.ResumeLayout(false);
-            this.tpGerman.ResumeLayout(false);
-            this.tpGerman.PerformLayout();
+            this.tpPlay.ResumeLayout(false);
+            this.tpPlay.PerformLayout();
             this.tbSettings.ResumeLayout(false);
             this.tbSettings.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
 		}
 
 		#endregion
         private MaterialSkin.Controls.MaterialTabControl Tc_main;
-        private System.Windows.Forms.TabPage tpEnglish;
         private MaterialSkin.Controls.MaterialTabSelector Ts_main;
-        private System.Windows.Forms.TabPage tbEnglishGerman;
-        private System.Windows.Forms.TabPage tpGerman;
+        private System.Windows.Forms.TabPage tpPlay;
         private MaterialSkin.Controls.MaterialSingleLineTextField tfVocab;
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
         private System.Windows.Forms.TabPage tbSettings;
@@ -413,5 +592,17 @@
         private MaterialSkin.Controls.MaterialRaisedButton btnReload;
         private MaterialSkin.Controls.MaterialRaisedButton btnCheckSolution;
         private MaterialSkin.Controls.MaterialRaisedButton btnNext;
+        private MaterialSkin.Controls.MaterialCheckBox cbDeleteVocab;
+        private System.Windows.Forms.Panel panel1;
+        private MaterialSkin.Controls.MaterialLabel materialLabel4;
+        private MaterialSkin.Controls.MaterialSingleLineTextField tfLocation;
+        private MaterialSkin.Controls.MaterialRadioButton rbEngGer;
+        private MaterialSkin.Controls.MaterialRadioButton rbGerEng;
+        private MaterialSkin.Controls.MaterialRaisedButton btnClearConsole;
+        private MaterialSkin.Controls.MaterialRaisedButton btnEnd;
+        private MaterialSkin.Controls.MaterialSingleLineTextField tfName;
+        private MaterialSkin.Controls.MaterialLabel txtLastTry;
+        private System.Windows.Forms.NotifyIcon cheatNotification;
+        private MaterialSkin.Controls.MaterialLabel txtCurrentTry;
     }
 }

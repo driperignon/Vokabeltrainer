@@ -43,7 +43,7 @@ namespace Vokabeltrainer
                             Application.Exit();
                             break;
                     }*/
-                    Application.Run(new Lernen(0));
+                    Application.Run(new Lernen());
                     break;
 
                 case "2":
