@@ -28,6 +28,9 @@ namespace Vokabeltrainer
         //Used for chaning the theme after the initial init.
         private MaterialSkinManager materialSkinManager = null;
 
+
+        private MaterialForm m = new Vorbereiten();
+
         public Lernen()
         {
             InitializeComponent();
@@ -85,6 +88,7 @@ namespace Vokabeltrainer
                     sFilePath = reader.ReadToEnd();
                 }
             }
+
 
             //b1g performance
             Thread loadingThread = new Thread(this.LoadWords);
@@ -191,7 +195,10 @@ namespace Vokabeltrainer
 
         private void updateText()
         {
-            this.lblResult.Text = $"Du hast {this.wrongWords} Fehler gemacht und {this.correctWords} von {(this.cbDeleteVocab.Checked ? this.totalWords.ToString() : "∞")} Wörtern richtig übersetzt!";
+            if (this.started)
+                this.lblResult.Text = $"Du hast {this.wrongWords} Fehler gemacht und {this.correctWords} von {(this.cbDeleteVocab.Checked ? this.totalWords.ToString() : "∞")} Wörtern richtig übersetzt!";
+            else
+                this.lblResult.Text = "Drücke auf 'Starten' um den Vokabeltrainer zu starten...";
             this.txtCurrentTry.Text = $"Fehler in % (Jetziger Versuch): {Math.Round(this.wrongWords / this.totalWords * 100, 0)}";
         }
 
@@ -221,6 +228,7 @@ namespace Vokabeltrainer
             {
                 this.tfVocab.Text = this.generatedKeyValuePair.Key;
             }
+            wrongWords = 0;
         }
 
         private void btnNext_Click(object sender, EventArgs e)
@@ -266,14 +274,15 @@ namespace Vokabeltrainer
             }
         }
 
-        private void btnEnd_Click(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
-            //Schaut ob die Dateien/Ordner existieren. Wenn nicht, erstellen.
-            if (!File.Exists(Path.Combine(this.tfLocation.Text, this.tfName.Text)) || !Directory.Exists(this.tfLocation.Text))
-            {
+            //Schaut ob der Ordner existieren. Wenn nicht, erstellen.
+            if (!Directory.Exists(this.tfLocation.Text))
                 Directory.CreateDirectory(this.tfLocation.Text);
-                File.Create(Path.Combine(this.tfLocation.Text, this.tfName.Text));
-            }
+
+            //if (!File.Exists(Path.Combine(this.tfLocation.Text, this.tfName.Text)))
+            //    File.Create(Path.Combine(this.tfLocation.Text, this.tfName.Text));
+
             //Neuer Streamwriter in die Datei
             var streamWriter = new StreamWriter(Path.Combine(this.tfLocation.Text, this.tfName.Text));
             //Speichert das Ergebnis in einer Textdatei...
@@ -294,6 +303,8 @@ namespace Vokabeltrainer
 
         private void rbGerEng_CheckedChanged(object sender, EventArgs e)
         {
+            wrongWords = 0;
+            this.updateText();
             //Neue Vokabel automatisch generieren. Dann muss es der Benutzer nicht machen (Aber natürlich nur wenn das Spiel schon gestartet hat)
             if (this.started)
                 this.generateNewVocab();
@@ -301,6 +312,8 @@ namespace Vokabeltrainer
 
         private void rbEngGer_CheckedChanged(object sender, EventArgs e)
         {
+            wrongWords = 0;
+            this.updateText();
             //Neue Vokabel automatisch generieren. Dann muss es der Benutzer nicht machen (Aber natürlich nur wenn das Spiel schon gestartet hat)
             if (this.started)
                 this.generateNewVocab();
@@ -325,6 +338,16 @@ namespace Vokabeltrainer
 
         private void materialLabel4_Click(object sender, EventArgs e)
         {
+        }
+
+        private void btnAddVocabs_Click(object sender, EventArgs e)
+        {
+            if (!m.Visible)
+            {
+                m = new Vorbereiten();
+                m.Show();
+            }
+
         }
 
         private void rbGreen_CheckedChanged(object sender, EventArgs e)

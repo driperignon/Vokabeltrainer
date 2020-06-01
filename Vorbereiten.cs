@@ -1,19 +1,35 @@
 ﻿using System;
+using MaterialSkin;
+using MaterialSkin.Controls;
 using System.Windows.Forms;
 using System.IO;
 
 namespace Vokabeltrainer
 {
-    public partial class Vorbereiten : Form
+    public partial class Vorbereiten : MaterialForm
     {
         private string sFilePath = string.Empty;
         private string sFileContent = string.Empty;
 
         private string[] currentLine = new string[2];
 
+        //Used for chaning the theme after the initial init.
+        private MaterialSkinManager materialSkinManager = null;
+
         public Vorbereiten()
         {
             InitializeComponent();
+
+            //New instance of the MaterialSkinManager
+            this.materialSkinManager = MaterialSkinManager.Instance;
+            //Allows the material skin addon to manage the current font
+            materialSkinManager.AddFormToManage(this);
+            //Sets the main theme of the form
+           //materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
+
+            //Sets the color scheme used by buttons, textboxes, etc...
+            //materialSkinManager.ColorScheme = new ColorScheme(Primary.Blue400, Primary.Blue500, Primary.Blue500, Accent.LightBlue100, TextShade.WHITE);
+
         }
 
         private void btn_open_Click(object sender, EventArgs e)
@@ -72,6 +88,7 @@ namespace Vokabeltrainer
                         currentLine = reader.ReadLine().Split(':');
                         dgv_words.Rows.Add(currentLine[0], currentLine[1]);
                     }
+                    reader.Close();
                 }
             }
         }
@@ -79,6 +96,7 @@ namespace Vokabeltrainer
         private void btn_save_Click(object sender, EventArgs e)
         {
             int x = 0;
+            sFileContent = "";
             for (int i = 0; i < dgv_words.Rows.Count - 1; i++)
             {
                 var row = dgv_words.Rows[i];
@@ -96,6 +114,7 @@ namespace Vokabeltrainer
             using (StreamWriter writer = new StreamWriter(sFilePath))
             {
                 writer.Write(sFileContent);
+                writer.Close();
             }
         }
     }
